@@ -1,0 +1,352 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.dashboardMain {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    column-gap: 10rem;
+    padding: 1rem;
+  }
+
+  .dashboardMain > div {
+    /* flex: 1; */
+    /* min-width: 25rem; */
+  }
+  .column{
+    width : 30rem;
+  }
+  
+  .dashboardMain > div > h2 {
+    margin-bottom: 1rem;
+    color: #333;
+    border-bottom: 0.7px solid black;
+  }
+  
+  .dashboardMain > div > div:first-of-type {
+    margin-bottom: 1rem;
+  }
+  
+  
+  .dashboardMain > div > div:first-of-type button:disabled {
+    cursor: default;
+  }
+  
+  .dashboardMain > div > div:nth-of-type(2),
+  .dashboardMain > div > div:nth-of-type(3),
+  .dashboardMain > div > div:nth-of-type(4) {
+    margin-top: 1rem;
+  }
+  
+  .dashboardMain h4 {
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .dashboardMain div > div > div {
+    margin-bottom: 2rem;
+  }
+
+  button{
+    color: darkgreen;
+    background-color: lightgreen;
+    border: 1px solid darkgreen;  
+    border-radius: 5px;
+    
+}
+.dashboardMain button:hover:not(:disabled) {
+    background-color: darkgreen;
+    color: white;
+    border-color: black;
+  }
+.selctorBtns{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-bottom: 0%;
+    gap: 1rem;
+}
+
+.daySelector{
+    background: white;
+    border: 2px solid green;
+    color: green;
+}
+
+.daySelector:hover:not(:disabled) {
+    background: lightgreen;
+    color: white;
+}
+.graphBtns{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    gap: 1rem;
+}
+  
+ /* ///////////////////////////////////////////////////////////  */
+
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f6f6;
+  color: black;
+  line-height: 1.6;
+}
+
+/* Main container */
+.medMain {
+  position: absolute;
+  top: 12%;
+  left: 8%;
+  padding: 1rem;
+  width: 55%;
+}
+#loignBx{
+  display : flex;
+  flex-direction: column;
+  left: 35%;
+
+}
+
+/* Sidebar styles */
+.sidebar {
+  position: absolute;
+  top: 15%;
+  right: 8%;
+  padding: 1rem;
+  width: 25%;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.sidebar h2 {
+  margin-bottom: 1rem;
+  margin-top: 0%;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.5rem;
+}
+
+/* Header & Add Meds Button */
+.medMain h1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid black;
+  padding-bottom: 0.5rem;
+}
+
+.medMain h1 button {
+  font-size: 0.9rem;
+  padding: 0.4rem 0.8rem;
+}
+
+/* Reminder form */
+form, .medMain > div {
+  background-color: #ffffff;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+label {
+  display: block;
+  margin: 0.5rem 0 0.25rem;
+}
+
+/* input[type="text"],
+input[type="time"]  */
+input{
+  width: 100%;
+  padding: 0.4rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  border: 1px solid #aaa;
+  margin-top: 0.4rem;
+}
+select {
+  padding: 0.4rem;        
+  border: 1px solid #ccc;  
+  border-radius: 4px;      
+  font-size: 14px;          
+  width: 60%;     
+  margin-right: 10%;     
+}
+
+
+
+input[type="text"]::placeholder,
+input[type="time"]::placeholder {
+  color: #aaa;
+}
+
+/* Time input + remove button */
+/* .medMain > div > div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+} */
+
+/* Buttons */
+button {
+  padding: 0.5rem 1rem;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: darkgreen;
+  background-color: lightgreen;
+  border: 1px solid darkgreen;
+  border-radius: 5px;
+  transition: all 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+  background-color: darkgreen;
+  color: white;
+  border-color: black;
+}
+
+button:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
+
+/* Reminder lists */
+/* ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 1rem;
+} */
+
+/* li {
+  padding: 0.5rem;
+  margin-bottom: 0.4rem;
+  background-color: #eef;
+  border: 1px solid #ccd;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+} */
+
+/* Reminder categories */
+/* h2 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #444;
+} */
+
+/* Categorized time blocks */
+/* .medMain > div > div {
+  margin-bottom: 1rem;
+} */
+
+/* Dose section in sidebar */
+.sidebar ul li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  background-color: #eef;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccd;
+  margin-bottom: 0.5rem;
+}
+
+.sidebar ul li button {
+  /* width: 30%; */
+}
+.reactBtn{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap : 1rem;
+}
+
+/* Dose status buttons side-by-side */
+/* .sidebar ul li button + button {
+  margin-left: 4%;
+} */
+
+.addBtn{
+  background: white;
+  border: 2px solid green;
+  color: green;
+}
+.clsBtn{
+  background: white;
+  border: 2px solid red;
+  color: red;
+}
+.clsBtn:hover:not(:disabled) {
+  background: lightcoral;
+  color: white;
+}
+.addBtn:hover:not(:disabled) {
+background: lightgreen;
+color: white;
+}
+.form div {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1rem;
+}
+.form div label {
+  width: 30%;  
+}
+.form div input {
+  max-width: 60%;
+}
+#xBtn{
+height: fit-content;
+width: fit-content;
+padding: 0.2rem;
+/* margin-top: 0.3%; */
+margin-left: 1%;
+}
+
+.submitBtn{
+  display: flex;
+  justify-content: center;
+}
+
+.remDiv{
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 2%;
+}
+
+.remDiv ul{
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 1rem;
+}
+
+.litItem{
+  padding: 0.5rem;
+  margin-bottom: 0.4rem;
+  background-color: #eef;
+  border: 1px solid #ccd;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.litItem button{
+  margin-top: 0%;
+}
+
+.error{
+  color: red
+}

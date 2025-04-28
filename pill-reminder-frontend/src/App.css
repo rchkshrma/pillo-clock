@@ -1,0 +1,260 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.container {
+    background-image: linear-gradient(120deg, #91bcf9 0%, #91bcf9 100%);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    width: 550px;
+    height: 700px;
+    border-radius: 20px;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center ;
+    background-color: #4a93fa;
+    border-radius: 20px 20px 0 0;
+    padding: 30px 20px 10px 20px;
+    width: auto;
+}
+
+.header > h1 {
+    font-size: 40px;
+    text-align: center;
+    color: rgb(50, 50, 50);
+    text-shadow: 2px 2px rgb(200, 200, 200);
+}
+
+.time {
+    font-size: 24px;
+    margin-top: 20px;
+    color: #333;
+}
+
+.reminder-input-container {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.reminder-input-container div {
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+}
+
+.reminder-input-container label {
+    font-size: 18px;
+    width: 300px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.reminder-input-container input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.add-reminder-btn {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.time {
+    display: flex;
+    flex-direction: column;
+    font-size: 35px;
+    font-weight: bold;
+    color: #292929;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px #cdcdcd;
+}
+
+.reminder-container {
+    padding: 20px;
+}
+
+.reminder-list {
+    list-style: none;
+    padding: 0;
+}
+
+.reminder-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.delete-btn {
+    background-color: #ff5252;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+} */
+/* 
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f9fc;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .main {
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+    height: 80vh;
+    background: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .container {
+    flex: 2;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  
+  .sidebar {
+    flex: 1;
+    background: #f1f8e9;
+    padding: 20px;
+    border-left: 2px solid #ddd;
+    overflow-y: auto;
+  }
+  
+  .header {
+    text-align: center;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .header h1 {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.3s;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  .add-meds-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  input, select {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .reminder-input-container {
+    background: #f1f1f1;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  
+  .reminder-container {
+    margin-top: 20px;
+  }
+  
+  h2 {
+    color: #444;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    background: #e9f5ff;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .sidebar h2 {
+    color: #2d6a4f;
+    margin-bottom: 10px;
+  }
+  
+  .sidebar ul li {
+    background: white;
+    border: 1px solid #ddd;
+  }
+  
+  .error {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+  } */
+  
+  
