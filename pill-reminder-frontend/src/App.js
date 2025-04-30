@@ -11,11 +11,11 @@ function App() {
   // usePushNotifications(); // no need let user have sub/unsub button.
   const [userId, setUserId] = useState(null);
 
-  const [reminders, setReminders] = useState([]); // Ensure reminders is an array
+  const [reminders, setReminders] = useState([]); 
   const [medicineName, setMedicineName] = useState('');
   const [reminderTimes, setReminderTimes] = useState(['']);//useState('');
   const [currentTime, setCurrentTime] = useState('');
-  const [error, setError] = useState(null); // Track any errors
+  const [error, setError] = useState(null); // errs remnember to set later for testing
   const token = localStorage.getItem('token');
   const [dose, setDose] = useState('');
   const [specialInstructions, setSpecialInstructions] = useState('');
@@ -45,6 +45,36 @@ const authHeaders = {
       setError(err.message);
           }};
 
+            
+          const toUTC = (time) => {
+            const [hours, minutes] = time.split(':').map(Number);
+          
+            const localDate = new Date();
+            localDate.setHours(hours, minutes, 0, 0);
+          
+            const utcHours = localDate.getUTCHours().toString().padStart(2, '0');
+            const utcMinutes = localDate.getUTCMinutes().toString().padStart(2, '0');
+          
+            return `${utcHours}:${utcMinutes}`;
+          };
+
+          function fromUTC(time) {
+            const [utcHours, utcMinutes] = time.split(':').map(Number);
+          
+            const now = new Date();
+              const utcDate = new Date(Date.UTC(
+                now.getFullYear(),
+                now.getMonth(),
+                now.getDate(),
+                utcHours,
+                utcMinutes
+              ));
+
+            const localHours = utcDate.getHours().toString().padStart(2, '0');
+            const localMinutes = utcDate.getMinutes().toString().padStart(2, '0');
+          
+            return `${localHours}:${localMinutes}`;
+          };
   
   const addReminder = async () => {
     loadReminders();
@@ -61,7 +91,7 @@ const authHeaders = {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ medicineName, dose, reminderTime: time, specialInstructions })
+        body: JSON.stringify({ medicineName, dose, reminderTime: toUTC(time), specialInstructions })
       });
 
       if (!response.ok) {
@@ -194,7 +224,7 @@ await loadReminders();
   const night = [];
 
     reminders.forEach((reminder) => {
-      const [hours] = reminder.time.split(':');
+      const [hours] = fromUTC(reminder.time).split(':');
       const hour = parseInt(hours, 10);
       
       if (hour >= 6 && hour < 12) {
@@ -298,7 +328,7 @@ await loadReminders();
                     <ul>
                 {data.map((reminder) => (
                   <li className='litItem' key={reminder.id}>
-                    {reminder.name}: {reminder.dosage} - {reminder.time} ({reminder.special_instructions || 'No instructions'})
+                    {reminder.name}: {reminder.dosage} - {fromUTC(reminder.time)} ({reminder.special_instructions || 'No instructions'})
                     <button id="xBtn" className="clsBtn" onClick={() => deleteReminder(reminder.id)}>Delete</button>
                   </li>
                 ))}
@@ -314,7 +344,7 @@ await loadReminders();
             <ul>
                 {doses.map((dose) => (
                     <li key={`${dose.medicine_id}-${dose.date}-${dose.time}`}>
-                        {dose.name} - {dose.dosage} - {dose.time}
+                        {dose.name} - {dose.dosage} - {fromUTC(dose.time)}
                         <div className='reactBtn'>
                         <button className="addBtn"onClick={() => updateDoseStatus(dose.medicine_id, dose.date, dose.time, 1)}>Taken</button>
                         <button className="clsBtn"onClick={() => updateDoseStatus(dose.medicine_id, dose.date, dose.time, 0)}>Missed</button>

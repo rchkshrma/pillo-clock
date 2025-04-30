@@ -411,9 +411,9 @@ app.listen(port, () => {
 
 
 const checkReminders = () => {
-    const now = new Date();
-    const currentTime = now.toISOString().slice(11, 16);
-    const date = now.toISOString().slice(0, 10);
+    const now = new Date().toISOString();
+    const currentTime = now.slice(11, 16);
+    const date = now.slice(0, 10);
     let dict = {};
             if (currentTime === '09:00' || currentTime ==='21:00') {console.log("goin to caretaeremail");caretakerEmail();} //for testing
 
@@ -503,8 +503,8 @@ const sendReminder = (dict) => {
     }).join('\n');
 
         const time = reminders[0].time; 
-        const sub = `Your Medication/Metric Reminder @ ${time}`;
-        const txt = `Hello,\n\nThis is your reminder for your medication(s) at ${time}:\n\n${text}\n\nStay healthy!\n\n- Pill O'Clock Team`;
+        const sub = `Your Medication/Metric Reminder @ ${time} (UTC)`;
+        const txt = `Hello,\n\nThis is your reminder for your medication(s) at ${time} (UTC):\n\n${text}\n\nStay healthy!\n\n- Pill O'Clock Team`;
         sendEmailReminder(userEmail, sub, txt);
         sendPushNotification(reminders[0].user_id, time, text);////////////
     });
@@ -582,9 +582,8 @@ const sendPushNotification = (userId, time, text) => {
             };
 
             const notificationPayload = JSON.stringify({
-                title: 'Pill Reminder',
-                body: `It's ${time}! Time to take your pills:\n${text}`,
-                //icon: '/pill-icon.png'
+                title: `Pill O'Clock`,
+                body: `It's ${time} (UTC)! Time to take your pills:\n${text}`,
             });
 
             webpush.sendNotification(pushSubscription, notificationPayload)
@@ -658,10 +657,10 @@ const sendCaretakerEmail = (dict) => {
 
             if (r.type === 'Medication') {
 
-                return `${index + 1}. ${r.type} - ${r.name} @ ${r.time}`;
+                return `${index + 1}. ${r.type} - ${r.name} @ ${r.time} (UTC)`;
             } else {
 
-                return `${index + 1}. ${r.type} - ${r.name} @ ${r.time}`;
+                return `${index + 1}. ${r.type} - ${r.name} @ ${r.time} (UTC)`;
         }
     }).join('\n');
 

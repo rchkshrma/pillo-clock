@@ -29,7 +29,35 @@ function Stats() {
   const [tests, setTests] =   useState([]);
   const [inputValue, setInputValue] = useState('');
   
+
+  const toUTC = (time) => {
+          const [hours, minutes] = time.split(':').map(Number);
+        
+          const localDate = new Date();
+          localDate.setHours(hours, minutes, 0, 0);
+        
+          const utcHours = localDate.getUTCHours().toString().padStart(2, '0');
+          const utcMinutes = localDate.getUTCMinutes().toString().padStart(2, '0');
+        
+          return `${utcHours}:${utcMinutes}`;
+        };
+
+        function fromUTC(time) {
+            const [utcHours, utcMinutes] = time.split(':').map(Number);
+          
+            const now = new Date();
+            const utcDate = new Date(Date.UTC(
+              now.getFullYear(),
+              now.getMonth(),
+              now.getDate(),
+              utcHours,
+              utcMinutes
+            ));
+    const localHours = utcDate.getHours().toString().padStart(2, '0');
+    const localMinutes = utcDate.getMinutes().toString().padStart(2, '0');
   
+    return `${localHours}:${localMinutes}`;
+  };
 
   //  remindders from the serer
   const loadReminders = async () => {
@@ -64,7 +92,7 @@ function Stats() {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ metricName, reminderTime: time })
+        body: JSON.stringify({ metricName, reminderTime: toUTC(time) })
       });
 
       if (!response.ok) {
@@ -175,7 +203,7 @@ function Stats() {
   const night = [];
 
     reminders.forEach((reminder) => {
-      const [hours] = reminder.time.split(':');
+      const [hours] = fromUTC(reminder.time).split(':');
       const hour = parseInt(hours, 10);
       
       if (hour >= 6 && hour < 12) {
@@ -246,7 +274,7 @@ function Stats() {
                     <ul>
                       {data.map((reminder) => (
                     <li key={reminder.id}className='litItem'>
-                      {reminder.name}: {reminder.dosage} - {reminder.time}
+                      {reminder.name}: {reminder.dosage} - {fromUTC(reminder.time)}
                       <button onClick={() => deleteReminder(reminder.id)}id="xBtn" className="clsBtn" >Delete</button>
                     </li>
                       ))}
@@ -262,7 +290,7 @@ function Stats() {
             <ul>
                 {tests.map((test) => (
                         <li key={`${test.metric_id}-${test.date}-${test.time}`}>
-                            {test.name} - {test.time}
+                            {test.name} - {fromUTC(test.time)}
                             <input type="text" placeholder="Enter value" value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
                             <button className={inputValue.trim() ? "addBtn" : "clsBtn"}onClick={() => updateTestStatus(test.name, test.metric_id, test.date, test.time, inputValue.trim())}>
                             {inputValue.trim() ? "Submit Value" : "Test Missed"}</button>
@@ -278,4 +306,4 @@ function Stats() {
 
 export default Stats;
 //same name of med,dose,sp instructions but multile times handle on frontend
-//////////// check ` this symbl is not present replace with '
+//////////// check ` this symbl is not present replace with ' was causing erors

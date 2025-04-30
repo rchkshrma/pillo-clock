@@ -140,6 +140,24 @@ const Dashboard = () => {
       ctx.restore();
     }
   };
+
+  function fromUTC(time) {
+      const [utcHours, utcMinutes] = time.split(':').map(Number);
+    
+      const now = new Date();
+      const utcDate = new Date(Date.UTC(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate(),
+        utcHours,
+        utcMinutes
+      ));
+    
+      const localHours = utcDate.getHours().toString().padStart(2, '0');
+      const localMinutes = utcDate.getMinutes().toString().padStart(2, '0');
+    
+      return `${localHours}:${localMinutes}`;
+    };
   const testAdherence = (() => {
     const today = new Date();
     const from = new Date(today);
@@ -148,21 +166,21 @@ const Dashboard = () => {
     const dates = [];
     const met_readingsDict = {};
   
-    for (let i = 0; i < rangeTests; i++) {
-      const d = new Date(from);
-      d.setDate(d.getDate() + i);
-      const key = d.toISOString().split('T')[0];
-      dates.push(key);
-    }
+        for (let i = 0; i < rangeTests; i++) {
+          const d = new Date(from);
+          d.setDate(d.getDate() + i);
+          const key = d.toISOString().split('T')[0];
+          dates.push(key);
+        }
   
     tests.forEach(test => {
-      const key = `${test.name} @${test.time}`;
-      if (!met_readingsDict[key]) met_readingsDict[key] = {};
+      const key = `${test.name} @${fromUTC(test.time)}`;
+        if (!met_readingsDict[key]) met_readingsDict[key] = {};
       met_readingsDict[key][test.date] =   test.input === -1 ? 0 : test.input
     });
   
-    return Object.entries(met_readingsDict).map(([key, values]) => {
-      const data = dates.map(date => values[date] ?? 0);
+      return Object.entries(met_readingsDict).map(([key, values]) => {
+          const data = dates.map(date => values[date] ?? 0);
   return {
     title: key,
     config: {
