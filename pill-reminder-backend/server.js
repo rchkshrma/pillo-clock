@@ -522,14 +522,14 @@ const sendEmailReminder = async (email, sub, txt) => {
     let transporter = nodemailer.createTransport({
       service: 'gmail', // You can change this to another email service
       auth: {
-        user: 'rochaksharmauk@gmail.com', // Your Gmail address
-        pass: 'oorzdytomqqgciud', // Your Gmail password or app password
+        user: 'rochaksharma07@gmail.com', // Your Gmail address
+        pass: 'aisqoczvkvzgcdxj', // Your Gmail password or app password
       },
     });
 
     // Email details
     let info = await transporter.sendMail({
-      from: '"Pill O\'Clock" <rochaksharmauk@gmail.com>', // Sender
+    from: '"Pill O\'Clock" <rochaksharma07@gmail.com>', // Sender //change email here too
       to: email,
       subject: sub,
       text: txt
