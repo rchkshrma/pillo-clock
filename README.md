@@ -53,3 +53,4 @@ Navigate to the **pill-reminder-frontend** directory:
 cd pill-reminder-frontend
 npm start
 ```
+### NOTE: INITIAL EMAILS MAY BE SENT TO SPAM, CHECK SPAM FOLDER AND MARK EMAIL ID AS NOT SPAM TO RECIEVE NOTIFICATIONS
